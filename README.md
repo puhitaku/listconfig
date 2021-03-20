@@ -1,5 +1,6 @@
 ### listconfig
-Convert .config into a menuconfig-like expanded list with help
+
+Convert .config into a menuconfig-like full list with help
 
 
 ### Example
