@@ -5,7 +5,7 @@ import click
 import click_pathlib
 import kconfiglib
 
-from listconfig import dig
+from listconfig import print_tree
 
 
 @click.command()
@@ -52,7 +52,7 @@ def main(kconfig_path, dotconfig_path, arch):
         print(f'Specified .config path {dotconfig_path} is not a file', file=sys.stderr)
 
     kconfig.load_config(str(dotconfig_path))
-    dig(kconfig.top_node.list, 0)
+    print_tree(kconfig.top_node.list)
 
 
 main()
