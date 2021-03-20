@@ -1,5 +1,7 @@
 import os
 import re
+import sys
+from contextlib import contextmanager
 
 import click
 import click_pathlib
@@ -8,11 +10,26 @@ import kconfiglib
 from listconfig import print_tree
 
 
+@contextmanager
+def quietify(verbose):
+    if verbose:
+        yield None
+        return
+
+    try:
+        with open(os.devnull, 'w') as devnull:
+            sys.stderr = devnull
+            yield None
+    finally:
+        sys.stderr = sys.__stderr__
+
+
 @click.command()
 @click.argument('kconfig_path', type=click_pathlib.Path(exists=True))
 @click.argument('dotconfig_path', type=click_pathlib.Path(exists=True))
-@click.option('--arch', default=None)
-def main(kconfig_path, dotconfig_path, arch):
+@click.option('--arch', default=None, help='ARCH value in Linux kernel. Inferred from .config by default.')
+@click.option('--verbose', '-v', is_flag=True, help='Enable warnings during Kconfig analysis.')
+def main(kconfig_path, dotconfig_path, arch, verbose):
     if not kconfig_path.is_file():
         print(f'Specified Kconfig path {kconfig_path} is not a file', file=sys.stderr)
         return sys.exit(1)
@@ -46,12 +63,15 @@ def main(kconfig_path, dotconfig_path, arch):
     if 'SRCARCH' not in os.environ:
         os.environ['SRCARCH'] = os.environ.get('ARCH', arch)
 
-    kconfig = kconfiglib.Kconfig(str(kconfig_path))
+    with quietify(verbose):
+        kconfig = kconfiglib.Kconfig(str(kconfig_path))
 
     if not dotconfig_path.is_file():
         print(f'Specified .config path {dotconfig_path} is not a file', file=sys.stderr)
 
-    kconfig.load_config(str(dotconfig_path))
+    with quietify(verbose):
+        kconfig.load_config(str(dotconfig_path))
+
     print_tree(kconfig.top_node.list)
 
 
