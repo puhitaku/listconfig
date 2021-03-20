@@ -35,7 +35,17 @@ $ listconfig --help-lines=1 /path/to/linux/Kconfig /path/to/linux/.config
 
 ### Install
 
+Easier way:
+
 ```
+$ pip install listconfig
+```
+
+To use the bleeding edge version:
+
+```
+$ git clone https://github.com/puhitaku/listconfig.git
+$ cd listconfig
 $ pip install -e .
 ```
 
