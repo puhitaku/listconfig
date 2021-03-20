@@ -27,7 +27,7 @@ def quietify(verbose):
 @click.command()
 @click.argument('kconfig_path', type=click_pathlib.Path(exists=True))
 @click.argument('dotconfig_path', type=click_pathlib.Path(exists=True))
-@click.option('--arch', default=None, help='ARCH value in Linux kernel. Inferred from .config by default.')
+@click.option('--arch', default=None, help='ARCH in Linux kernel. Inferred by default.')
 @click.option('--help-lines', '-l', default=2, help='Number of lines to pick from a config help.')
 @click.option('--verbose', '-v', is_flag=True, help='Enable warnings during Kconfig analysis.')
 def main(kconfig_path, dotconfig_path, arch, help_lines, verbose):

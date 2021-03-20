@@ -5,10 +5,10 @@ __version__ = '0.0.1'
 
 
 def value_str(sc):
-    '''
+    """
     Returns the value part ('[*]', '<M>', '(foo)' etc.) of a menu entry.
     sc: Symbol or Choice.
-    '''
+    """
 
     if sc.type in (kconfiglib.STRING, kconfiglib.INT, kconfiglib.HEX):
         return f'({sc.str_value})'
@@ -91,7 +91,7 @@ def dig(node, indent):
 def print_tree(node, nlines):
     lines = dig(node, 0)
     longest = max(len(t[0]) for t in lines)
-    
+
     for t in lines:
         if nlines == 0:
             print(t[0])
@@ -106,4 +106,3 @@ def print_tree(node, nlines):
             if len(lines) > nlines:
                 l += f' ...'
             print(l)
-
