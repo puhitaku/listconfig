@@ -59,13 +59,8 @@ def node2str(node):
         res += f' ({node.item.name})'
 
     if hasattr(node, 'help') and node.help is not None:
-        lines = [l for l in node.help.split('\n') if l.strip()]
-        l = lines[0]
-        if len(lines) == 2:
-            l += f' {lines[1]}'
-        elif len(lines) > 2:
-            l += f' {lines[1]} ...'
-        return res, l
+        help_lines = [l for l in node.help.split('\n') if l.strip()]
+        return res, help_lines
 
     return res, None
 
@@ -76,10 +71,10 @@ def dig(node, indent):
 
     while node:
         if node.prompt:
-            s, help = node2str(node)
+            s, help_lines = node2str(node)
             if s is not None and not s.startswith('*** Compiler:'):
                 count += 1
-                lines.append(('  ' * indent + s, help))
+                lines.append(('  ' * indent + s, help_lines))
                 # print('  ' * indent + s)
 
         if node.list:
@@ -93,14 +88,22 @@ def dig(node, indent):
     return lines
 
 
-def print_tree(node):
+def print_tree(node, nlines):
     lines = dig(node, 0)
     longest = max(len(t[0]) for t in lines)
     
     for t in lines:
+        if nlines == 0:
+            print(t[0])
+            continue
+
         print(t[0] + ' ' * (longest - len(t[0])), end=' ')
         if t[1] is None:
             print()
         else:
-            print(t[1])
+            lines = t[1]
+            l = ' '.join(lines[:nlines])
+            if len(lines) > nlines:
+                l += f' ...'
+            print(l)
 
