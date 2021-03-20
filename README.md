@@ -15,6 +15,13 @@ Specify a `.config` file in somewhere like Linux Kernel.
 Formatted list is output from stdout. Redirect it at which you like to put.
 
 ```
-$ python3 -m listconfig /path/to/.config > out
+$ listconfig /path/to/Kconfig /path/to/.config > out
+```
+
+The `ARCH` is automatically detected from `.config`.
+Specify `--arch` option to change it manually.
+
+```
+$ listconfig /path/to/Kconfig /path/to/.config --arch=arm > out
 ```
 
