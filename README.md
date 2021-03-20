@@ -9,7 +9,7 @@ Note: scroll rightward to see the entire line!
 
 ```
 $ listconfig --help-lines=1 /path/to/linux/Kconfig /path/to/linux/.config
-[General setup]
+=== General setup ===
   [ ] Compile also drivers which will not load (COMPILE_TEST)                                                     Some drivers can be compiled on a different platform than they are ...
   ()  Local version - append to kernel release (LOCALVERSION)                                                     Append an extra string to the end of your kernel version. ...
   [*] Automatically append version information to the version string (LOCALVERSION_AUTO)                          This will try to automatically determine if the current tree is a ...
@@ -53,7 +53,7 @@ The `ARCH` is automatically detected from `.config`.
 Specify `--arch` option to change it manually.
 
 ```
-$ listconfig /path/to/Kconfig /path/to/.config --arch=arm > out
+$ listconfig --arch=arm /path/to/Kconfig /path/to/.config > out
 ```
 
 The description is generated from the "help" section of Kconfig items.
