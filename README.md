@@ -32,6 +32,8 @@ $ listconfig --help-lines=1 /path/to/linux/Kconfig /path/to/linux/.config
 .
 ```
 
+[See the full listconfig](./examples/listconfig_linux_arm_imx28)
+
 
 ### Install
 
