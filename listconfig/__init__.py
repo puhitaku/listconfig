@@ -62,14 +62,20 @@ def node2str(node):
 
 
 def dig(node, indent):
+    count = 0
+
     while node:
         if node.prompt:
             s = node2str(node)
             if s is not None:
+                count += 1
                 print('  ' * indent + s)
 
         if node.list:
-            dig(node.list, indent + 1)
+            if count == 0:
+                dig(node.list, indent)
+            else:
+                dig(node.list, indent + 1)
 
         node = node.next
 
