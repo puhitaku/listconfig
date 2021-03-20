@@ -44,7 +44,7 @@ def node2str(node):
         return None, None
 
     if node.item == kconfiglib.MENU:
-        return f'[{prompt}]', None
+        return f'=== {prompt} ===', None
 
     if node.item == kconfiglib.COMMENT:
         return f'*** {prompt} ***', None
