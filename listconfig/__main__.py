@@ -31,6 +31,8 @@ def quietify(verbose):
 @click.option('--help-lines', '-l', default=2, help='Number of lines to pick from a config help.')
 @click.option('--verbose', '-v', is_flag=True, help='Enable warnings during Kconfig analysis.')
 def main(kconfig_path, dotconfig_path, arch, help_lines, verbose):
+    kconfig_path, dotconfig_path = kconfig_path.absolute(), dotconfig_path.absolute()
+
     if not kconfig_path.is_file():
         print(f'Specified Kconfig path {kconfig_path} is not a file', file=sys.stderr)
         return sys.exit(1)
