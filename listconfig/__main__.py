@@ -30,6 +30,7 @@ def quietify(verbose):
 @click.option('--arch', default=None, help='ARCH in Linux kernel. Inferred by default.')
 @click.option('--help-lines', '-l', default=2, help='Number of lines to pick from a config help.')
 @click.option('--verbose', '-v', is_flag=True, help='Enable warnings during Kconfig analysis.')
+@click.version_option(prog_name='listconfig', message="%(prog)s %(version)s")
 def main(kconfig_path, dotconfig_path, arch, help_lines, verbose):
     kconfig_path, dotconfig_path = kconfig_path.absolute(), dotconfig_path.absolute()
 
