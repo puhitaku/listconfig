@@ -45,6 +45,9 @@ def main(kconfig_path, dotconfig_path, arch, help_lines, verbose):
     if 'CC' not in os.environ:
         os.environ['CC'] = 'gcc'
 
+    if 'LD' not in os.environ:
+        os.environ['LD'] = 'ld'
+
     if arch is None:
         r = re.compile('Linux/([^ ]+) ')
         with open(dotconfig_path, 'r') as f:
