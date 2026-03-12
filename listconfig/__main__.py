@@ -5,8 +5,8 @@ from contextlib import contextmanager
 
 import click
 import click_pathlib
-import kconfiglib
 
+from listconfig import kconfiglib, print_tree
 from listconfig import print_tree
 
 

@@ -1,4 +1,4 @@
-import kconfiglib
+from listconfig import kconfiglib
 
 
 def value_str(sc):
