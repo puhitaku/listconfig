@@ -1,0 +1,33 @@
+[project]
+name = "listconfig"
+version = '0.1.0'
+authors = [
+    {name = "Takumi Sueda", email = "puhitaku@gmail.com"}
+]
+description = "Convert .config into a human-readable config list with description and metadata"
+readme = "README.md"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "click",
+    "click-pathlib",
+    "kconfiglib",
+]
+
+[project.scripts]
+listconfig = "listconfig.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/puhitaku/listconfig"
+
+[dependency-groups]
+dev = [
+  "black",
+]
+
+[tool.uv.sources]
+kconfiglib = { git = "https://github.com/zephyrproject-rtos/Kconfiglib.git", rev = "a74dfcfaf14ea8a22866df725e757d7c901255dd" }
