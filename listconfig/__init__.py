@@ -1,6 +1,4 @@
-import kconfiglib
-
-__version__ = '0.0.4'
+from listconfig import kconfiglib
 
 
 def value_str(sc):
